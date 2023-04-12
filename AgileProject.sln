@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileProject.WebApi", "AgileProject.WebApi\AgileProject.WebApi.csproj", "{FF59CFB4-4F0E-4254-91C4-5ACEB7C40F2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileProject.Data", "AgileProject.Data\AgileProject.Data.csproj", "{2AC3964E-9E99-4CEE-9A20-2B9743737A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileProject.Services", "AgileProject.Services\AgileProject.Services.csproj", "{E4CD91BD-F305-4D52-9B6C-CF8755FCEDB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileProject.Models", "AgileProject.Models\AgileProject.Models.csproj", "{8AF6870C-54EF-4853-95B6-86593444123B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF59CFB4-4F0E-4254-91C4-5ACEB7C40F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF59CFB4-4F0E-4254-91C4-5ACEB7C40F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF59CFB4-4F0E-4254-91C4-5ACEB7C40F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF59CFB4-4F0E-4254-91C4-5ACEB7C40F2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC3964E-9E99-4CEE-9A20-2B9743737A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC3964E-9E99-4CEE-9A20-2B9743737A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC3964E-9E99-4CEE-9A20-2B9743737A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC3964E-9E99-4CEE-9A20-2B9743737A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4CD91BD-F305-4D52-9B6C-CF8755FCEDB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CD91BD-F305-4D52-9B6C-CF8755FCEDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4CD91BD-F305-4D52-9B6C-CF8755FCEDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CD91BD-F305-4D52-9B6C-CF8755FCEDB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF6870C-54EF-4853-95B6-86593444123B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF6870C-54EF-4853-95B6-86593444123B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF6870C-54EF-4853-95B6-86593444123B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF6870C-54EF-4853-95B6-86593444123B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
