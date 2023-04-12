@@ -8,6 +8,6 @@ namespace AgileProject.Services.Genre
 {
     public class IGenreService
     {
-        Task<bool> InputGenreAsync(GenreRegister model);
+       
     }
 }
