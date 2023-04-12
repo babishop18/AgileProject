@@ -12,5 +12,10 @@ namespace AgileProject.Data.Entities
         public int Id{get;set;}
         [Required]
         public string GenreType{get;set;}
+        
+        public virtual List<GameEntity> Games {get; set;} = new List<GameEntity>();
+
+
+        
     }
 }
