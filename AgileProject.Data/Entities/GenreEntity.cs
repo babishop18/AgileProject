@@ -17,5 +17,9 @@ namespace AgileProject.Data.Entities
         [Required]
         public string GenreType {get; set;}
 
+    
+        
+        public virtual List<GameEntity> Games {get; set;} = new List<GameEntity>();
+
     }
 }

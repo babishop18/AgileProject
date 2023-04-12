@@ -11,6 +11,8 @@ namespace AgileProject.Data.Entities
         [Key]
         public int Id{get; set;}
         [Required]
-        public string GameSystemName{get;set;}
+        public string GameSystemType{get;set;}
+        public virtual List<GameEntity> Games {get; set;} = new List<GameEntity>();
+
     }
 }
