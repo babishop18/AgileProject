@@ -1,5 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace AgileProject.Data.Entities
 {
     public class GenreEntity
@@ -9,8 +14,5 @@ namespace AgileProject.Data.Entities
 
         [Required]
         public string GenreType {get; set;}
-
-        
-
     }
 }
