@@ -11,6 +11,6 @@ namespace AgileProject.Data.Entities
         [Key]
         public int Id{get;set;}
         [Required]
-        public string GenreName{get;set;}
+        public string GenreType{get;set;}
     }
 }
