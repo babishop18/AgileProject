@@ -6,10 +6,10 @@ using AgileProject.Models.Genre;
 
 namespace AgileProject.Services.Genre
 {
-    public class IGenreService
+    public interface IGenreService
     {
-       Task <bool> InputGenreAsync(GenreRegister request);
+       Task<bool> InputGenreAsync(GenreRegister request);
 
-       Task <bool> RemoveGenreAsync(GenreRegister model);
+       Task<bool> RemoveGenreAsync(string name);
     }
 }

@@ -2,13 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AgileProject.Models.Genre;
+using AgileProject.Services.Genre;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgileProject.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameController
+    public class GenreController
     {
+        private readonly IGenreService _genreService;
     
         [HttpDelete("{model:GenreRegister}")]
         public async Task<IActionResult> RemoveGenre([FromBody] GenreRegister model)

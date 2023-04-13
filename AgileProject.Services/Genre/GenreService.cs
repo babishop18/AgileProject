@@ -41,5 +41,10 @@ namespace AgileProject.Services.Genre
         {
             return await _context.Genres.FirstOrDefaultAsync(genre => genre.GenreType.ToLower() == GenreType.ToLower());
         }
+
+        public static Task<bool> DeleteNoteAsync(GenreRegister model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
