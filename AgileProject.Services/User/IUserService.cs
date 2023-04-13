@@ -11,5 +11,10 @@ namespace AgileProject.Services.User
     {
         Task<bool> RegisterUserAsync(UserRegister model);
         Task<bool> AddNewGameAsync(GameRegister request);
+        Task<bool> RemoveGameAsync(int gameId);
+        Task<IEnumerable<GameListItem>> GetListOfAllGamesAsync();
+        Task<IEnumerable<GameListItem>> GetListOfAllGamesByGenreAsync(string genreName);
+        Task<IEnumerable<GameListItem>> GetListOfAllGamesByGameSystemAsync(string genreName);
+        
     }
 }
