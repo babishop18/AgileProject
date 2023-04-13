@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgileProject.WebApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class GameSystemController : ControllerBase
     {
          private readonly ITokenService _tokenService;
