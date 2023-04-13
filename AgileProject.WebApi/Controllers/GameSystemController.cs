@@ -15,7 +15,7 @@ namespace AgileProject.WebApi.Controllers
     [ApiController]
     public class GameSystemController : ControllerBase
     {
-         private readonly ITokenService _tokenService;
+        private readonly ITokenService _tokenService;
 
         private readonly IGameSystemService _gameSystemService;
 
@@ -25,7 +25,7 @@ namespace AgileProject.WebApi.Controllers
             _gameSystemService = gameSystemService;
         }
 
-         [Authorize(Policy="Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpDelete]
         public async Task<IActionResult> RemoveGameSystem([FromBody] string gameSystemName)
         {
@@ -34,13 +34,13 @@ namespace AgileProject.WebApi.Controllers
                 : BadRequest("Game system could not be deleted.");
         }
 
-         [Authorize(Policy="Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public async Task<IActionResult> InputGameSystem([FromBody] GSRegister request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            
+
             if (await _gameSystemService.InputGameSystemAsync(request))
                 return Ok("Game system was created successfully.");
 

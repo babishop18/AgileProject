@@ -58,14 +58,14 @@ namespace AgileProject.WebApi.Controllers
             return Ok(games);
         }
         [Authorize(Policy = "Customer")]
-        [HttpGet("~/Customer/GetByGenre")]
-        public async Task<IActionResult> GetListOfAllGamesByGenre(string genre){
+        [HttpGet("~/Customer/GetByGenre/{genre}")]
+        public async Task<IActionResult> GetListOfAllGamesByGenre([FromRoute] string genre){
             IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesByGenreAsync(genre);
             return Ok(games);
         }
         [Authorize(Policy = "Customer")]
-        [HttpGet("~/Customer/GetByGameSystem")]
-        public async Task<IActionResult> GetListOfAllGamesByGameSystem(string gameSystem){
+        [HttpGet("~/Customer/GetByGameSystem/{gameSystem}")]
+        public async Task<IActionResult> GetListOfAllGamesByGameSystem([FromRoute] string gameSystem){
             IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesByGameSystemAsync(gameSystem);
             return Ok(games);
         }
