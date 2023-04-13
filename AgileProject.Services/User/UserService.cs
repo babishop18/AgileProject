@@ -77,6 +77,7 @@ namespace AgileProject.Services.User
         }
         public async Task<IEnumerable<GameListItem>> GetListOfAllGamesAsync()
         {
+
             IEnumerable<GameListItem> games = await _context.Games.Include(gameEntity => gameEntity.Genre).Include(gameEntity => gameEntity.GameSystem).Select(gameEntity => new GameListItem
             {
                 Id = gameEntity.Id,
@@ -90,7 +91,14 @@ namespace AgileProject.Services.User
         }
         public async Task<IEnumerable<GameListItem>> GetListOfAllGamesByGenreAsync(string genreName)
         {
-            GenreEntity genre = await _context.Genres.Include(g => g.Games).FirstOrDefaultAsync(g => g.GenreType == genreName);
+            System.Console.WriteLine("\n\n\n\n");
+            System.Console.WriteLine("Checking to see if genre exist");
+            System.Console.WriteLine("\n\n\n\n");
+            GenreEntity genre = await _context.Genres.Include(g => g.Games).ThenInclude(game => game.GameSystem).FirstOrDefaultAsync(g => g.GenreType == genreName);
+            System.Console.WriteLine("\n\n\n\n");
+            System.Console.WriteLine("We see that the genre exists and now accessing the Genre virtual array");
+            System.Console.WriteLine("\n\n\n\n");
+
             if (genre == null)
             {
                 return null;
@@ -108,7 +116,7 @@ namespace AgileProject.Services.User
         }
         public async Task<IEnumerable<GameListItem>> GetListOfAllGamesByGameSystemAsync(string gameSystemName)
         {
-            GameSystemEntity gameSystem = await _context.GameSystems.Include(g => g.Games).FirstOrDefaultAsync(g => g.GameSystemType == gameSystemName);
+            GameSystemEntity gameSystem = await _context.GameSystems.Include(g => g.Games).ThenInclude(game => game.Genre).FirstOrDefaultAsync(g => g.GameSystemType == gameSystemName);
             if (gameSystem == null)
             {
                 return null;
