@@ -37,9 +37,5 @@ namespace AgileProject.Services.Genre
             return await _context.SaveChangesAsync() == 1;
         }
 
-        public async Task<GenreEntity> GetGenreByType(string GenreType)
-        {
-            return await _context.Genres.FirstOrDefaultAsync(genre => genre.GenreType.ToLower() == GenreType.ToLower());
-        }
     }
 }
