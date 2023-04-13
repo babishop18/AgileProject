@@ -6,7 +6,6 @@ using AgileProject.Data;
 using AgileProject.Data.Entities;
 using AgileProject.Models.Game;
 using AgileProject.Models.User;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace AgileProject.Services.User
@@ -44,12 +43,12 @@ namespace AgileProject.Services.User
 
         public async Task<bool> AddNewGameAsync(GameRegister request)
         {
-            GenreEntity genreExists = await _context.Genres.FirstOrDefaultAsync(g => g.GenreType == request.GenreType)
+            GenreEntity genreExists = await _context.Genres.FirstOrDefaultAsync(g => g.GenreType == request.GenreType);
             if (genreExists == null)
             {
                 return false;
             }
-            GameSystemEntity gameSystemExists = await _context.GameSystems.FirstOrDefaultAsync(g => g.GameSystemType == request.GameSystemType)
+            GameSystemEntity gameSystemExists = await _context.GameSystems.FirstOrDefaultAsync(g => g.GameSystemType == request.GameSystemType);
             if (gameSystemExists == null)
             {
                 return false;
