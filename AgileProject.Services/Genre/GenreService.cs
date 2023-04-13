@@ -27,7 +27,7 @@ namespace AgileProject.Services.Genre
 
         public async Task<bool> RemoveGenreAsync(string genreName)
         {
-            var genreEntity = await _context.Genres.FindAsync(genreName);
+            var genreEntity = await _context.Genres.FirstOrDefaultAsync(g => g.GenreType == genreName);
             
             if (genreEntity == null)
                 

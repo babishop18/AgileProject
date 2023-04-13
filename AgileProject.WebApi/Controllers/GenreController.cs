@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AgileProject.Models.Genre;
+using AgileProject.Services.Genre;
+using AgileProject.Services.Token;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgileProject.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenreController
+    public class GenreController : ControllerBase
     {
 
         private readonly ITokenService _tokenService;
@@ -24,7 +29,7 @@ namespace AgileProject.WebApi.Controllers
         [HttpDelete]
         public async Task<IActionResult> RemoveGenre([FromBody] string genreName)
         {
-            return await GenreService.RemoveGenreAsync(genreName)
+            return await _genreService.RemoveGenreAsync(genreName)
                 ? Ok("Genre was deleted successfully.")
                 : BadRequest("Genre could not be deleted.");
         }
@@ -36,7 +41,7 @@ namespace AgileProject.WebApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             
-            if (await GenreService.InputGenreAsync(request))
+            if (await _genreService.InputGenreAsync(request))
                 return Ok("Genre was created successfully.");
 
             return BadRequest("Genre could not be created.");

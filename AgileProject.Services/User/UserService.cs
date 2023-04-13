@@ -6,6 +6,7 @@ using AgileProject.Data;
 using AgileProject.Data.Entities;
 using AgileProject.Models.Game;
 using AgileProject.Models.User;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace AgileProject.Services.User
