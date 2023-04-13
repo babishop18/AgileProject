@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AgileProject.Services.GameSystem
 {
-    public class GameSystemService
+    public class GameSystemService : IGameSystemService
     {
         private readonly ApplicationDbContext _context;
 

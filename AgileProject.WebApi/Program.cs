@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using AgileProject.Services.Genre;
+using AgileProject.Services.GameSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IGameSystemService, GameSystemService>();
 
 builder.Services.AddAuthorization(options =>
     {
