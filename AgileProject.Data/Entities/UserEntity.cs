@@ -13,6 +13,7 @@ namespace AgileProject.Data
 		public string Password { get; set; }
 		
 		[Required]
+		[RegularExpression("^(Admin|Customer)$")]
 		public string Classifier{get; set;} // Admin or Customer 
 		
 	}

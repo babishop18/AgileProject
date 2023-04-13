@@ -44,12 +44,12 @@ namespace AgileProject.Services.User
 
         public async Task<bool> AddNewGameAsync(GameRegister request)
         {
-            GenreEntity genreExists = await _context.Genres.FirstOrDefaultAsync(g => g.GenreType == request.GenreType)
+            GenreEntity genreExists = await _context.Genres.FirstOrDefaultAsync(g => g.GenreType == request.GenreType);
             if (genreExists == null)
             {
                 return false;
             }
-            GameSystemEntity gameSystemExists = await _context.GameSystems.FirstOrDefaultAsync(g => g.GameSystemType == request.GameSystemType)
+            GameSystemEntity gameSystemExists = await _context.GameSystems.FirstOrDefaultAsync(g => g.GameSystemType == request.GameSystemType);
             if (gameSystemExists == null)
             {
                 return false;
@@ -65,8 +65,66 @@ namespace AgileProject.Services.User
             int numberOfChanges = await _context.SaveChangesAsync();
             return numberOfChanges == 1;
         }
+        public async Task<bool> RemoveGameAsync(int gameId)
+        {
+            GameEntity gameEntity = await _context.Games.FindAsync(gameId);
+            if (gameEntity != null)
+            {
+                _context.Games.Remove(gameEntity);
+            }
+            return await _context.SaveChangesAsync() == 1;
+
+        }
+        public async Task<IEnumerable<GameListItem>> GetListOfAllGamesAsync()
+        {
+            IEnumerable<GameListItem> games = await _context.Games.Include(gameEntity => gameEntity.Genre).Include(gameEntity => gameEntity.GameSystem).Select(gameEntity => new GameListItem
+            {
+                Id = gameEntity.Id,
+                Title = gameEntity.Title,
+                Genre = gameEntity.Genre.GenreType,
+                GameSystem = gameEntity.GameSystem.GameSystemType
+
+            }).ToListAsync();
+
+            return games;
+        }
+        public async Task<IEnumerable<GameListItem>> GetListOfAllGamesByGenreAsync(string genreName)
+        {
+            GenreEntity genre = await _context.Genres.Include(g => g.Games).FirstOrDefaultAsync(g => g.GenreType == genreName);
+            if (genre == null)
+            {
+                return null;
+            }
+            IEnumerable<GameListItem> gameListItems = genre.Games.Select(game => new GameListItem
+            {
+                Id = game.Id,
+                Title = game.Title,
+                Genre = genre.GenreType,
+                GameSystem = game.GameSystem.GameSystemType
+
+            }).ToList();
+            return gameListItems;
+
+        }
+        public async Task<IEnumerable<GameListItem>> GetListOfAllGamesByGameSystemAsync(string gameSystemName)
+        {
+            GameSystemEntity gameSystem = await _context.GameSystems.Include(g => g.Games).FirstOrDefaultAsync(g => g.GameSystemType == gameSystemName);
+            if (gameSystem == null)
+            {
+                return null;
+            }
+            IEnumerable<GameListItem> gameListItems = gameSystem.Games.Select(game => new GameListItem
+            {
+                Id = game.Id,
+                Title = game.Title,
+                Genre = game.Genre.GenreType,
+                GameSystem = gameSystem.GameSystemType
+            });
+            return gameListItems;
+
+
+        }
+
 
     }
-
-
 }

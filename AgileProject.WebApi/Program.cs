@@ -16,6 +16,11 @@ builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("Customer", policy => policy.RequireClaim("Classifier", "Customer"));
+        options.AddPolicy("Admin", policy => policy.RequireClaim("Classifier", "Admin"));
+    });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
