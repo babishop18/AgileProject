@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AgileProject.Models.Game;
+using AgileProject.Models.Token;
 using AgileProject.Models.User;
+using AgileProject.Services.Token;
 using AgileProject.Services.User;
 using Microsoft.AspNetCore.Authorization;
 
@@ -17,6 +19,23 @@ namespace AgileProject.WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService; 
+        private readonly ITokenService _tokenService;
+
+        public UserController(IUserService userService, ITokenService tokenService){
+            _userService = userService;
+            _tokenService = tokenService;
+        }    
+        [HttpPost("~/api/Token")]
+        public async Task<IActionResult> Token([FromBody] TokenRequest request){
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+            TokenResponse tokenReponse = await _tokenService.GetTokenAsync(request);
+            if(tokenReponse is null){
+                return BadRequest("Invalid username or password");
+            }
+            return Ok(tokenReponse);
+        }
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegister model){
             if(!ModelState.IsValid){
@@ -31,9 +50,26 @@ namespace AgileProject.WebApi.Controllers
 
         }
 
-
         // all methods associated with Customer
         [Authorize(Policy = "Customer")]
+        [HttpGet("AllGames")]
+        public async Task<IActionResult> GetListOfAllGames(){
+            IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesAsync();
+            return Ok(games);
+        }
+        [Authorize(Policy = "Customer")]
+        [HttpGet("ByGenre")]
+        public async Task<IActionResult> GetListOfAllGamesByGenre(string genre){
+            IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesByGenreAsync(genre);
+            return Ok(games);
+        }
+        [Authorize(Policy = "Customer")]
+        [HttpGet("ByGameSystem")]
+        public async Task<IActionResult> GetListOfAllGamesByGameSystem(string gameSystem){
+            IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesByGameSystemAsync(gameSystem);
+            return Ok(games);
+        }
+
         
 
 
@@ -43,6 +79,7 @@ namespace AgileProject.WebApi.Controllers
 
         // all methods associated with Admin
         [Authorize(Policy = "Admin")]
+        [HttpPost]
         public async Task<IActionResult> AddNewGame([FromBody] GameRegister request){
             if(!ModelState.IsValid){
                 return BadRequest(ModelState);
@@ -51,6 +88,14 @@ namespace AgileProject.WebApi.Controllers
                 return Ok("Game added");
             }
             return BadRequest("Game not added");
+        }
+        [Authorize(Policy = "Admin")]
+        [HttpDelete]
+        public async Task<IActionResult> RemoveGame([FromRoute] int gameId){
+            if(await _userService.RemoveGameAsync(gameId)){
+                return Ok("note deleted");
+            }
+            return BadRequest("note not deleted, error");
         }
     }
 }

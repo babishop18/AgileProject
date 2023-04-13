@@ -1,0 +1,60 @@
+Epic: Allow administrators to view and manage games that are stored in the database. Allow customers to view games that the administrators add to the database.
+
+
+User Story: As a customer, I want to be able to search for games
+Task 1: Implement a search for game by name function (2 points)
+Task 2: Implement a search for games by Genre function (2 points)
+Task 3: Implement a search for games by Game system function (2 points)
+Acceptance Criteria:
+The user can view a list of games. 
+The user can search for a specific game title 
+The user can sort their search by game genre. 
+The user can search games from a specific game system.
+
+
+User Story: As an Admin, I want to be able to manage the games in the database
+Task 1: Implement a function that adds games to the game table (2 points)
+Task 2: Implement a function that removes games from the game table (2 points)
+Acceptance Criteria:
+Add a game to the “games” table including the title, system, and genre.
+Remove a game and its details from the “games” table
+
+
+User Story: As an Admin, I want to be able to manage the Genres in the database
+Task 1: Implement a function that adds genres to the genre table (2 points)
+Task 2: Implement a function that removes genre from the genre table (2 points)
+Acceptance Criteria:
+Add genres to the “genres” table
+Remove genres from the “genres” table
+
+
+
+User Story: As an Admin, I want to be able to manage the game systems in the database
+Task 1: Implement a function that adds a new game system to the “game system” table  (2 points)
+Task 2: Implement a function that removes a game system from the “game system” table  (2 points)
+Acceptance Criteria:
+Add gaming systems to the “gaming systems” table 
+Remove gaming systems from  the “gaming systems” table
+
+
+Backlog:
+User Story: As an Admin, I want to be able to update a game in the database
+Task 1: Implement a function that replaces old information with new information in the “game” table.  (2 points)
+Acceptance Criteria:
+Old gaming information is replaced with new information in the “gaming” table 
+
+
+
+
+User Story: As an Admin, I want to be able to update a game system in the database
+Task 1: Implement a function that replaces old information with new information in the “game system” table.  (2 points)
+Acceptance Criteria:
+Old gaming system information is replaced with new information in the “gaming systems” table 
+
+
+
+
+User Story: As an Admin, I want to be able to update a genre in the database
+Task 1: Implement a function that replaces old information with new information in the “genre” table.  (2 points)
+Acceptance Criteria:
+Old genre information is replaced with new information in the “genre” table
