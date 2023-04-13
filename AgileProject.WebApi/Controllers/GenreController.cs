@@ -9,16 +9,15 @@ namespace AgileProject.WebApi.Controllers
     [ApiController]
     public class GameController
     {
-    
-        [HttpDelete("{model:GenreRegister}")]
+        [HttpDelete]
         public async Task<IActionResult> RemoveGenre([FromBody] string genreName)
         {
             return await GenreService.RemoveGenreAsync(genreName)
-                ? Ok($"Genre was deleted successfully.")
-                : BadRequest($"Genre could not be deleted.");
+                ? Ok("Genre was deleted successfully.")
+                : BadRequest("Genre could not be deleted.");
         }
 
-        [HttpPost("{request:GenreRegister}")]
+        [HttpPost]
         public async Task<IActionResult> InputGenre([FromBody] GenreRegister request)
         {
             if (!ModelState.IsValid)
