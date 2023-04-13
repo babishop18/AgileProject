@@ -11,9 +11,9 @@ namespace AgileProject.WebApi.Controllers
     {
     
         [HttpDelete("{model:GenreRegister}")]
-        public async Task<IActionResult> RemoveGenre([FromBody] GenreRegister model)
+        public async Task<IActionResult> RemoveGenre([FromBody] string genreName)
         {
-            return await GenreService.DeleteNoteAsync(model)
+            return await GenreService.RemoveGenreAsync(genreName)
                 ? Ok($"Genre was deleted successfully.")
                 : BadRequest($"Genre could not be deleted.");
         }
