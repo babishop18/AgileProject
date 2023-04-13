@@ -27,7 +27,7 @@ namespace AgileProject.Services.Genre
 
         public async Task<bool> RemoveGenreAsync(string genreName)
         {
-            var genreEntity = await _context.Genres.FindAsync(genreName);
+            var genreEntity = await _context.Genres.FirstOrDefaultAsync(g => g.GenreType == genreName);
             
             if (genreEntity == null)
                 
@@ -37,14 +37,5 @@ namespace AgileProject.Services.Genre
             return await _context.SaveChangesAsync() == 1;
         }
 
-        public async Task<GenreEntity> GetGenreByType(string GenreType)
-        {
-            return await _context.Genres.FirstOrDefaultAsync(genre => genre.GenreType.ToLower() == GenreType.ToLower());
-        }
-
-        public static Task<bool> DeleteNoteAsync(GenreRegister model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
