@@ -52,34 +52,28 @@ namespace AgileProject.WebApi.Controllers
 
         // all methods associated with Customer
         [Authorize(Policy = "Customer")]
-        [HttpGet("AllGames")]
+        [HttpGet("~/Customer/GetAllGames")]
         public async Task<IActionResult> GetListOfAllGames(){
             IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesAsync();
             return Ok(games);
         }
         [Authorize(Policy = "Customer")]
-        [HttpGet("ByGenre")]
+        [HttpGet("~/Customer/GetByGenre")]
         public async Task<IActionResult> GetListOfAllGamesByGenre(string genre){
             IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesByGenreAsync(genre);
             return Ok(games);
         }
         [Authorize(Policy = "Customer")]
-        [HttpGet("ByGameSystem")]
+        [HttpGet("~/Customer/GetByGameSystem")]
         public async Task<IActionResult> GetListOfAllGamesByGameSystem(string gameSystem){
             IEnumerable<GameListItem> games = await _userService.GetListOfAllGamesByGameSystemAsync(gameSystem);
             return Ok(games);
         }
 
-        
-
-
-
-
-
 
         // all methods associated with Admin
         [Authorize(Policy = "Admin")]
-        [HttpPost]
+        [HttpPost("~/Admin/RegisterGame")]
         public async Task<IActionResult> AddNewGame([FromBody] GameRegister request){
             if(!ModelState.IsValid){
                 return BadRequest(ModelState);
@@ -90,7 +84,7 @@ namespace AgileProject.WebApi.Controllers
             return BadRequest("Game not added");
         }
         [Authorize(Policy = "Admin")]
-        [HttpDelete]
+        [HttpDelete("~/Admin/DeleteGame")]
         public async Task<IActionResult> RemoveGame([FromRoute] int gameId){
             if(await _userService.RemoveGameAsync(gameId)){
                 return Ok("note deleted");
